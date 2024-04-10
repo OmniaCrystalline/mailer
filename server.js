@@ -40,6 +40,7 @@ app.post("/send-email", async (req, res) => {
     console.log('responseEmail', responseEmail)
     res.status(200).json({ responseEmail });
   } catch (err) {
+    console.log('err', err, err?.message)
     res.status(400).json({ err });
   }
 });
