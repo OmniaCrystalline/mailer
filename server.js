@@ -33,7 +33,9 @@ app.post("/send-email", async (req, res) => {
     console.log('phone, theme, name', phone, theme, name)
     const responseEmail = await transporter.sendMail({
       from: process.env.MAIL,
-      html: `name: ${name} theme:${theme} phone:${phone}`,
+      to: process.env.RECEIVER,
+      text: `name: ${name} theme:${theme} phone:${phone}`,
+      html: `<p>name: ${name} theme:${theme} phone:${phone}</p>`,
     });
     console.log('responseEmail', responseEmail)
     res.status(200).json({ responseEmail });
