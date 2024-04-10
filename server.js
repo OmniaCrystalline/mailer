@@ -30,10 +30,12 @@ const transporter = nodemailer.createTransport({
 app.post("/send-email", async (req, res) => {
   try {
     const { phone, theme, name } = req.body;
+    console.log('phone, theme, name', phone, theme, name)
     const responseEmail = await transporter.sendMail({
       from: process.env.MAIL,
       html: `name: ${name} theme:${theme} phone:${phone}`,
     });
+    console.log('responseEmail', responseEmail)
     res.status(200).json({ responseEmail });
   } catch (err) {
     res.status(400).json({ err });
